@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Solve Equality for a Perfect Mondrian candidate</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+	</head>
+	<body>
+	<canvas id="canvas" height="100" width="100" ></canvas>
+	<hr>
+	<p id="here">Notification goes here</p>
+	<p id="text">Text goes here</p>
+
+<script src="schematic.js"></script>
+
+<script>
+	var canvas=document.getElementById("canvas");
+	var ctx=canvas.getContext("2d");
+
+	var equalityset = new EqualitySet();
+	equalityset.get("/JSON/equalityset", function(jj){
+		var hBuffer = "";
+		var vBuffer = "";
+		for(var i=0;i<jj.equality.length;i++){
+			equalityset.addEquality(jj.equality[i]);
+			if(jj.equality[i].horizontal){
+				hBuffer += "<li>" + jj.equality[i].before + "=" + jj.equality[i].after;
+			}
+			else {
+				vBuffer += "<li>" + jj.equality[i].before + "=" + jj.equality[i].after;
+			}
+		}
+		document.getElementById("here").innerHTML = "Hurtizontal<ul>" + hBuffer + "</ul>" +
+			"Vortickle<ul>" + vBuffer + "</ul>";
+//		this.importFromJSON(jj);
+		equalityset.solve("text", "canvas");
+	});
+</script>
+	</body>
+</html>

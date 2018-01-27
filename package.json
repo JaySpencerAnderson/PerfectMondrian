@@ -1,0 +1,14 @@
+{
+  "name": "perfect",
+  "version": "1.0.0",
+  "description": "Infrastructure for pursuing a perfect solution to the Mondrian Art Puzzle",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jay Anderson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

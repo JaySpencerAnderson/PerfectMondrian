@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>Compute Schema for a Perfect Mondrian candidate</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+	</head>
+	<body>
+	<canvas id="canvas" height="5000" width="1200" ></canvas>
+	<hr>
+
+<script src="schematic.js"></script>
+
+<script>
+	var canvas=document.getElementById("canvas");
+	var ctx=canvas.getContext("2d");
+
+	// Schematic(size, context, scale, canvasWidth
+	var schema = new Schematic(3,ctx,8,1200);
+
+	schema.fill();
+	console.log(schema.getLibrary().length);
+</script>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>Test Solve Equality for a Direct Mondrian candidate</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+	</head>
+	<body>
+	<canvas id="canvas" height="240" width="240" ></canvas>
+	<hr>
+	<p id="here">Notification goes here</p>
+	<p id="text">Text goes here</p>
+	<p id="status">Status goes here</p>
+
+<script src="schematic.js"></script>
+
+<script>
+	var canvas=document.getElementById("canvas");
+	var ctx=canvas.getContext("2d");
+
+//  000
+// 01110
+// 02340
+// 05540
+//  000
+//
+// 1(0) is    120 x 24
+// 4(0,1) is   30 x 96
+// 5(0,4) is   90 x 32
+// 2(0,1,5) is 45 x 64
+// 3(2) is     45 x 64
+//
+	var hBuffer="", vBuffer="";
+	var equalityset = new EqualitySet();
+	// Sides
+	equalityset.addEquality(new Equality(true,[0],[1]));
+	equalityset.addEquality(new Equality(false,[0],[1,2,5]));
+	equalityset.addEquality(new Equality(false,[1,4],[0]));
+	equalityset.addEquality(new Equality(true,[5,4],[0]));
+	// Horizontal
+	equalityset.addEquality(new Equality(true,[1],[2,3,4]));
+	equalityset.addEquality(new Equality(true,[2,3],[5]));
+	// Vertical
+	equalityset.addEquality(new Equality(false,[2],[3]));
+	equalityset.addEquality(new Equality(false,[3,5],[4]));
+
+	for(var i=0;i<equalityset.equality.length;i++){
+		var eq=equalityset.equality[i];
+		if(eq.horizontal){
+			hBuffer+="<li>" + eq.before + " = " + eq.after;
+		}
+		else {
+			vBuffer+="<li>" + eq.before + " = " + eq.after;
+		}
+	}
+	document.getElementById("here").innerHTML = "<ul>Horizontal" + hBuffer + "</ul>" +
+			"<ul>Vertical" + vBuffer + "</ul>";
+	equalityset.solve("text","canvas","status");
+</script>
+	</body>
+</html>
