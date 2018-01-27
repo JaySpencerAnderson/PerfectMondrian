@@ -9,7 +9,7 @@ the Green Acres comedy series.
 
 The Mondrian Art Puzzle aims to fill/populate a square with integral
 dimensions with a set of similarly sized rectangles, no two of which 
-are congruent.  The score of the arrangment is calculated as the difference
+are congruent.  The score of the arrangement is calculated as the difference
 between the areas of the largest and smallest rectangles.  There must be
 at least 2 rectangles.
 
@@ -33,9 +33,9 @@ rectangles had the same area, they would be congruent.
 The first schematic which I came up with when pondering the problem resembles
 a spiral, something like the following:
 
-112
-342
-355
+112<br>
+342<br>
+355<br>
 
 So 5 rectangles - one in the middle with the other four forming a sort of
 pinwheel around the middle.
@@ -44,7 +44,7 @@ In fact, I've found this doesn't work for two reasons.
 1) When I size this using a spreadsheet, I find that the ratio of the dimensions
 between the central square and the long or short dimension of the outer
 rectangles goes to the golden ratio which is decidedly not rational.
-2) When the size of the rectangles become the same, the outer rectangles
+2) When the area of the rectangles become the same, the outer rectangles
 are congruent.
 
 So perhaps I should have a second criterion for the schematics, that they are
@@ -69,15 +69,16 @@ sure if the schematic or the set of rectangles had problems.
 Approach, Part 2 (second thought)
 
 My current thought on how to *solve* a schematic is to guess one dimension
-and then calulate the remaining dimensions, then adjusting the guess.
+and then calculate the remaining dimensions, then adjust the guess until 
+the calculated areas are as expected.
 
 Let me illustrate with two examples.
 
 Example 1
 
-111
-244
-233
+111<br>
+244<br>
+233<br>
 
 The solution uses the equalities which I commented on earlier.  The solution
 will have two rectangles which are congruent, but the purpose of this is to
@@ -85,7 +86,7 @@ illustrate how the solution is figured out.
 
 0) Since there are 4 rectangles in the schematic, the width and height of the
 square is set to 4! or 24.  Since there are 4 rectangles in the square, the
-area of each rectangle is (24x24)/4 = 144.  We'll see this works out well.
+area of each rectangle is (24x24)/4 = 144.  This works out well.
 1) Rectangle 1 is the width of the square or 24.  The height is 144/24 or 6.
 2) Rectangle 2 is the height of the square minus 6 or 18.  The width is
 144/18 or 8.
@@ -103,7 +104,7 @@ Double check:
 
 We should be able to add the width of rectangles in 3 different ways and get
 the width of the square (w(1)=24, w(2)+w(4)=24, w(2)+w(3)=24).  Similarly,
-we can check the height of all of the squares.
+we can calculate the height of the square from the rectangles.
 
 Disclaimer:
 
@@ -111,34 +112,34 @@ This example has no unknowns so works out pretty easily.
 
 Example 2
 
-112
-342
-355
+112<br>
+342<br>
+355<br>
+
+This time I'll go with a width/height of 5! or 120 since there are 5 rectangles.
+This will give each rectangle an area of (120x120)/5 or 2880.
 
 This is the spiral or pinwheel mentioned earlier.  We will have to start with
 a guess since no rectangle dimension is known because none goes the full
 width or height of the square - which is known.
 
-This time I'll go with a width/height of 5! or 120 since there are 5 rectangles.
-This will give each rectangle an area of (120x120)/5 or 2880.
-
 1) The best guess would be any of the outer rectangles.  We know that the minimum
 dimension for a rectangle the full width or height of the square is 120/5 or 24.
-That means that the width of 1 has to be less than the full width minus the
+That means that the width of rectangle 1 has to be less than the full width minus the
 minimum width or 120 - 24 or 96.  So we can make our first guess 96 for the 
 width of rectangle 1.  This gives a height of 30.
 Since this is clearly wrong when we calculate the dimensions of the next
 rectangle, I'll just mention the calculations step by step and list the values
-in a table afterwards since the guess is going to change.
-2) width of 2 is 120 - width of 1.  Divide area by width to get height.
-3) height of 3 is 120 - height of 1.  Divide area by height to get width.
-4) width of 4 is 120 minus width of 3 and width of 2.
-   height of 4 is height of 2 minus height of 1.
-   We can now compare the resulting area of 4 to the expected area (2880) and
-   adjust the width of 1 *down* to bring the area to the correct value.
-5) width of 5 is 120 minus width of 3.
-   The height of 5 can be calculated as 120 minus the height of 2 (5.ha) or
-   120 minus the height of 1 and 4 (5.hb).
+in a table afterwards since the guess (column 1.w) is going to change.
+2) width of rectangle 2 is 120 - width of rectangle 1.  Divide area by width to get height.
+3) height of rectangle 3 is 120 - height of rectangle 1.  Divide area by height to get width.
+4) width of rectangle 4 is 120 minus width of rectangle 3 and width of rectangle 2.
+   height of rectangle 4 is height of rectangle 2 minus height of rectangle 1.
+   We can now compare the resulting area of rectangle 4 to the expected area (2880) and
+   adjust the width of rectangle 1 *down* to bring the area to the correct value.
+5) width of rectangle 5 is 120 minus width of rectangle 3.
+   The height of rectangle 5 can be calculated as 120 minus the height of rectangle 2 (5.ha) or
+   120 minus the height of rectangle 1 and rectangle 4 (5.hb).
 
 Table:
 
@@ -157,13 +158,48 @@ Table:
 86.8328	33.1671	33.1672	86.8327	33.1671	86.8328	53.6656	53.6655	2879.99	86.8328	33.1672		2880.0035
 86.83281573	33.16718427			53.66563146	2880				2880
 
+<table>
+<tr>
+<th>1.w</th><th>1.h</th><th>2.w</th><th>2.h</th><th>3.w</th><th>3.h</th><th>4.w</th><th>4.h</th><th>4.a</th><th>5.w</th><th>5.ha</th><th>5.hb</th><th>5.aa</th><th>5.ab</th>
+</tr><tr>
+<td>96</td><td>30</td><td>24</td><td>120</td><td>32</td><td>90</td><td>64</td><td>90</td><td>5760</td><td>88</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr><tr>
+<td>92</td><td>31..</td><td>28</td><td>102</td><td>32..</td><td>88..</td><td>59..</td><td>71..</td><td>4259</td><td>87..</td><td>17..</td><td>17..</td><td>1500</td><td>1500</td>
+</tr><tr>
+<td>88</td><td>32..</td><td>32</td><td>90</td><td>33</td><td>87..</td><td>55</td><td>57..</td><td>3150</td><td>87</td><td>30</td><td>30</td><td>2610</td><td>2610</td>
+</tr><tr>
+<td>86</td><td>33..</td><td>34</td><td>84..</td><td>33..</td><td>86..</td><td>52..</td><td>51..</td><td>2699..</td><td>86..</td><td>35..</td><td>35..</td><td>3060..</td><td>3060..</td>
+</tr><tr>
+<td>87</td><td>33</td><td>44</td><td>87</td><td>33</td><td>86</td><td>53</td><td>54</td><td>2917.4</td><td>86</td><td>32</td><td></td><td>2842.597403</td>
+</tr><tr>
+<td>86.9</td><td>33</td><td>33</td><td>87</td><td>33</td><td>86</td><td>53.7</td><td>53.8</td><td>2894.98</td><td>86.8</td><td>32.99</td><td></td><td>2865.0</td>
+</tr><tr>
+<td>86.8</td><td>33</td><td>33</td><td>86.7</td><td>33</td><td>86.8</td><td>53.6</td><td>53.5</td><td>2872.7</td><td>86.8</td><td>33.253</td><td></td><td>2887.29</td>
+</tr><tr>
+<td>86.81</td><td>33.1759</td><td>33.19</td><td>86.7731</td><td>33.1705</td><td>86.8240</td><td>53.6394</td><td>53.5972</td><td>2874.92</td><td>86.8294</td><td>33.2268</td><td></td><td>2885.0725</td>
+</tr><tr>
+<td>86.82</td><td>33.1720</td><td>33.18</td><td>86.7992</td><td>33.1690</td><td>86.8279</td><td>53.6509</td><td>53.6271</td><td>2877.14</td><td>86.8309</td><td>33.2007</td><td></td><td>2882.8502</td>
+</tr><tr>
+<td>86.83</td><td>33.1682</td><td>33.17</td><td>86.8254</td><td>33.1675</td><td>86.8317</td><td>53.6624</td><td>53.6571</td><td>2879.37</td><td>86.8324</td><td>33.1745</td><td></td><td>2880.62642</td>
+</tr><tr>
+<td>86.833</td><td>33.1671</td><td>33.167</td><td>86.8332</td><td>33.1671</td><td>86.8328</td><td>53.6658</td><td>53.6661</td><td>2880.04</td><td>86.8328</td><td>33.1667</td><td></td><td>2879.9590</td>
+</tr><tr>
+<td>86.8328</td><td>33.1671</td><td>33.1672</td><td>86.8327</td><td>33.1671</td><td>86.8328</td><td>53.6656</td><td>53.6655</td><td>2879.99</td><td>86.8328</td><td>33.1672</td><td></td><td>2880.0035</td>
+</tr><tr>
+<td>86.83281573</td><td>33.16718427</td><td></td><td></td><td>53.66563146</td><td>2880</td><td></td><td></td><td></td><td>2880</td>
+</tr>
+</table>
+
 Summary:
 
 The process was to change the guess (1.w) until the areas (4.a, 5.aa, 5.ab) were correct, e.g. 2880.
-I was doing this in a Google spreadsheet.
+I was doing these calculations in a Google spreadsheet.
+
 Note that the dimensions of 1, 2, 3 and 5 are identical when the areas get to 2880.  So this means this
  schematic results in congruent rectangles which disqualifies the result as a Mondrian solution.
+
 Note that 4 is a square when the areas get to 2880.
+
 Note that the ratio between the dimensions are the golden ratio:
 - 86.83281573 / 53.66563146 = 1.618033989
 - 53.66563146 / 33.16718427 = 1.618033989
@@ -177,7 +213,7 @@ In summary, these two test examples did not result in a Perfect Mondrian solutio
 it looks like the method is sound and fairly direct.  The big question is whether the process will result
 in rational dimensions.  I think I'm going to have to wait and see how that pans out.
 
-Stay tuned.  I just got the store in the Mongo DB to work (again) today so now I think I can just work on 
+Stay tuned.  I just got the save in the Mongo DB to work (again) today so now I think I can just work on 
 implementing the procedure to solve.
 
 Jay
