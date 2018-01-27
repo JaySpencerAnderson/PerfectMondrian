@@ -7,8 +7,8 @@ The Mondrian Art Puzzle is a mathematical route of inquiry inspired by the
 paintings of Piet Mondrian.  One such painting may be seen in the intro to
 the Green Acres comedy series.
 
-The Mondrian Art Puzzle aims to fill/populate a square with discrete
-dimensions with a set of discretely sized rectangles, no two of which 
+The Mondrian Art Puzzle aims to fill/populate a square with integral
+dimensions with a set of similarly sized rectangles, no two of which 
 are congruent.  The score of the arrangment is calculated as the difference
 between the areas of the largest and smallest rectangles.  There must be
 at least 2 rectangles.
