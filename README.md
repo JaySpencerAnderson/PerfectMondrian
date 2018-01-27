@@ -1,6 +1,8 @@
 # PerfectMondrian
 Perfect Solution to Mondrian Art Puzzle
-#Mondrian Art Puzzle
+
+Mondrian Art Puzzle
+
 The Mondrian Art Puzzle is a mathematical route of inquiry inspired by the
 paintings of Piet Mondrian.  One such painting may be seen in the intro to
 the Green Acres comedy series.
@@ -14,11 +16,13 @@ at least 2 rectangles.
 So for a minimal solution, if one starts with a 5x5 square, this can be 
 divided into a 2x5 and a 3x5 rectangle, yielding a score of 15-10 = 5.
 
-#Perfect Mondrian
+Perfect Mondrian
+
 A perfect solution to the Mondrian Art Puzzle is one that would have a
 score of 0.
 
-#Approach, Part 1
+Approach, Part 1
+
 The first part of the approach is to come up with a schematic of rectangles
 which have a chance of being sized so that all rectangles have the same area
 and are not congruent.  The main part of this is that two adjacent rectangles
@@ -47,7 +51,8 @@ So perhaps I should have a second criterion for the schematics, that they are
 not symmetric.  However that is not entirely obvious and there are different
 sorts of symmetry.
 
-#Approach, Part 2 (first thought)
+Approach, Part 2 (first thought)
+
 My first thought on how to *solve* a schematic was to generate a set of
 equally sized rectangles and try all of the combinations.  My thought was
 to have the dimension of the square be N! where N is the number of rectangles
@@ -61,13 +66,15 @@ Javascript or even for a language with 64 bit integers.
 3) If one set of rectangles failed to populate the schematic, one couldn't be
 sure if the schematic or the set of rectangles had problems.
 
-#Approach, Part 2 (second thought)
+Approach, Part 2 (second thought)
+
 My current thought on how to *solve* a schematic is to guess one dimension
 and then calulate the remaining dimensions, then adjusting the guess.
 
 Let me illustrate with two examples.
 
-#Example 1
+Example 1
+
 111
 244
 233
@@ -92,15 +99,18 @@ Rectangles 3 and 4 are congruent as was expected (since they are adjacent and
 have the same width since they are both bounded by Rectangle 2 and the right
 edge of the square.
 
-##Double check:
+Double check:
+
 We should be able to add the width of rectangles in 3 different ways and get
 the width of the square (w(1)=24, w(2)+w(4)=24, w(2)+w(3)=24).  Similarly,
 we can check the height of all of the squares.
 
-##Disclaimer:
+Disclaimer:
+
 This example has no unknowns so works out pretty easily.
 
-#Example 2
+Example 2
+
 112
 342
 355
@@ -130,7 +140,8 @@ in a table afterwards since the guess is going to change.
    The height of 5 can be calculated as 120 minus the height of 2 (5.ha) or
    120 minus the height of 1 and 4 (5.hb).
 
-#Table:
+Table:
+
 1.w	1.h	2.w	2.h	3.w	3.h	4.w	4.h	4.a	5.w	5.ha	5.hb	5.aa	5.ab
 96	30	24	120	32	90	64	90	5760	88	0	0	0	0
 92	31..	28	102	32..	88..	59..	71..	4259	87..	17..	17..	1500	1500
@@ -146,7 +157,8 @@ in a table afterwards since the guess is going to change.
 86.8328	33.1671	33.1672	86.8327	33.1671	86.8328	53.6656	53.6655	2879.99	86.8328	33.1672		2880.0035
 86.83281573	33.16718427			53.66563146	2880				2880
 
-#Summary:
+Summary:
+
 The process was to change the guess (1.w) until the areas (4.a, 5.aa, 5.ab) were correct, e.g. 2880.
 I was doing this in a Google spreadsheet.
 Note that the dimensions of 1, 2, 3 and 5 are identical when the areas get to 2880.  So this means this
